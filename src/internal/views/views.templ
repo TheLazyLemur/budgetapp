@@ -1,0 +1,96 @@
+package views
+
+templ layout() {
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<script src="https://cdn.tailwindcss.com"></script>
+			<style>
+                .container {
+                  width: 100%;
+                  height: 100%;
+                  /* Add your background pattern here */
+                  background-color: #313131;
+                  background-image: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0);
+                  background-size: 30px 30px;
+                  background-position: -5px -5px
+                }
+            </style>
+		</head>
+		<body class="container bg-[#232136] text-[#e0def4]">
+			<main class="flex flex-col w-screen lg:flex-row">
+				<aside class="flex w-full text-xl lg:w-1/6 lg:h-screen lg:text-3xl bg-[#2a273f]">
+					<div class="flex m-auto space-x-3 h-24 lg:flex-col lg:space-y-4 lg:space-x-0 lg:h-auto">
+						<div class="my-auto hover:cursor-pointer text-[#c4a7e7]">Dashboard </div>
+						<div class="my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]">Expenses </div>
+						<div class="my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]">Reporting </div>
+						<div class="my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]">API Keys </div>
+					</div>
+				</aside>
+				<content class="w-full h-screen lg:w-5/6">
+					{ children... }
+				</content>
+			</main>
+		</body>
+	</html>
+}
+
+templ gridCard(header string) {
+	<div class="p-10 rounded-xl hover:border cols-span-1 bg-[#393552] h-[300px] hover:border-[#ea9a97]">
+		<div class="py-2 text-2xl border-b border-[#9ccfd8]">
+			{ header }
+		</div>
+		{ children... }
+	</div>
+}
+
+templ Index() {
+	@layout() {
+		<div class="flex overflow-auto flex-col p-10 space-y-10 w-full h-full">
+			<div class="grid grid-cols-3 gap-x-10 mx-auto w-full">
+				<h1 class="text-3xl text-[#e0def4]">Dashboard </h1>
+				<div></div>
+				<h1 class="text-3xl text-right text-[#e0def4]">30 Days </h1>
+			</div>
+			<div class="grid grid-cols-1 gap-10 mx-auto w-full lg:grid-cols-3">
+				@gridCard("Balance") {
+					<div class="flex w-full h-full">
+						<div class="m-auto text-4xl">
+							$420.69	
+						</div>
+					</div>
+				}
+				@gridCard("Income") {
+					<div class="flex w-full h-full">
+						<div class="m-auto text-4xl text-[#3e8fb0]">
+							$1000.00
+						</div>
+					</div>
+				}
+				@gridCard("Expenses") {
+					<div class="flex w-full h-full">
+						<div class="m-auto text-4xl text-[#eb6f92]">
+							$579.31
+						</div>
+					</div>
+				}
+			</div>
+			<div class="grid grid-cols-1 gap-x-10 mx-auto w-full">
+				<div class="col-span-full p-10 rounded-xl hover:border bg-[#393552] h-[500px] hover:border-[#ea9a97]">
+					<div class="py-2 text-2xl border-b border-[#9ccfd8]">
+						Chart
+					</div>
+				</div>
+			</div>
+			<div class="grid grid-cols-1 gap-x-10 mx-auto w-full">
+				<div class="col-span-full p-10 rounded-xl hover:border bg-[#393552] h-[500px] hover:border-[#ea9a97]">
+					<div class="py-2 text-2xl border-b border-[#9ccfd8]">
+						Overview
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+}
