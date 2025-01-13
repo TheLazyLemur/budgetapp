@@ -29,7 +29,7 @@ func layout() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!doctype html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://cdn.tailwindcss.com\"></script><style>\n                .container {\n                  width: 100%;\n                  height: 100%;\n                  /* Add your background pattern here */\n                  background-color: #313131;\n                  background-image: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0);\n                  background-size: 30px 30px;\n                  background-position: -5px -5px\n                }\n            </style></head><body class=\"container bg-[#232136] text-[#e0def4]\"><main class=\"flex flex-col w-screen lg:flex-row\"><aside class=\"flex w-full lg:w-1/6 lg:h-screen lg:text-3xl text-md bg-[#2a273f]\"><div class=\"flex m-auto space-x-5 h-24 lg:flex-col lg:space-y-4 lg:space-x-0 lg:h-auto\"><div class=\"my-auto hover:cursor-pointer text-[#c4a7e7]\">Dashboard </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">Expenses </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">Reporting </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">API Keys </div></div></aside><content class=\"w-full h-screen lg:w-5/6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!doctype html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap\" rel=\"stylesheet\"><script src=\"https://cdn.tailwindcss.com\"></script><script src=\"https://cdn.jsdelivr.net/npm/apexcharts\"></script><style>\n            * {\n                font-family: 'JetBrains Mono', monospace;\n            }\n                .container {\n                  width: 100%;\n                  height: 100%;\n                  background-color: #313131;\n                  background-image: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0);\n                  background-size: 30px 30px;\n                  background-position: -5px -5px\n                }\n            </style></head><body class=\"container bg-[#232136] text-[#e0def4]\"><main class=\"flex flex-col w-screen lg:flex-row\"><aside class=\"flex flex-col justify-between w-full lg:w-1/6 lg:h-screen lg:text-3xl text-md bg-[#2a273f]\"><div class=\"flex my-5 mx-auto space-x-2 h-12 text-md\">Budget App</div><div class=\"flex m-auto space-x-5 h-24 lg:flex-col lg:space-y-4 lg:space-x-0 lg:h-auto\"><div class=\"my-auto hover:cursor-pointer text-[#c4a7e7]\">Dashboard </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">Expenses </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">Reporting </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">API Keys </div></div><div class=\"flex my-5 mx-auto space-x-2 h-12 text-sm\"><div class=\"my-auto\">Dan Rousseau</div><div class=\"justify-center items-center my-auto w-10 h-10 rounded-full my-autoflex bg-[#ea9a97]\"></div></div></aside><content class=\"w-full h-screen lg:w-5/6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -73,13 +73,13 @@ func gridCard(header string) templ.Component {
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(header)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/internal/views/views.templ`, Line: 43, Col: 11}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/internal/views/views.templ`, Line: 58, Col: 11}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div><div class=\"flex w-full h-full\"><div class=\"m-auto text-4xl\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -87,12 +87,57 @@ func gridCard(header string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		return nil
 	})
+}
+
+func graph() templ.ComponentScript {
+	return templ.ComponentScript{
+		Name: `__templ_graph_8fd9`,
+		Function: `function __templ_graph_8fd9(){var options = {
+    chart: {
+        type: 'area',
+        height: 500,
+        toolbar: {
+            show: false,
+        },
+      },
+      colors: ['#ea9a97', '#c4a7e7'],
+      series: [{
+        name: 'sales',
+        data: [30,40,35,50,49,60,70,91,125]
+      }],
+      tooltip: {
+          theme: 'dark'
+      },
+      xaxis: {
+        labels: {
+          style: {
+            colors: '#ffffff',
+            fontSize: '12px',
+          },
+        },
+        categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+      },
+      yaxis: {
+        labels: {
+          style: {
+            colors: '#ffffff',
+            fontSize: '12px',
+          },
+        },
+      },
+    }
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+}`,
+		Call:       templ.SafeScript(`__templ_graph_8fd9`),
+		CallInline: templ.SafeScriptInline(`__templ_graph_8fd9`),
+	}
 }
 
 func Index() templ.Component {
@@ -144,7 +189,7 @@ func Index() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div class=\"flex w-full h-full\"><div class=\"m-auto text-4xl\">$420.69\t</div></div>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div class=\"text-[#e0def4]\">$420.69\t</div>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -166,7 +211,7 @@ func Index() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<div class=\"flex w-full h-full\"><div class=\"m-auto text-4xl text-[#3e8fb0]\">$1000.00</div></div>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<div class=\"text-[#3e8fb0]\">$1000.00</div>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -188,7 +233,7 @@ func Index() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<div class=\"flex w-full h-full\"><div class=\"m-auto text-4xl text-[#eb6f92]\">$579.31</div></div>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<div class=\"text-[#eb6f92]\">$579.31</div>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -198,7 +243,15 @@ func Index() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div><div class=\"grid grid-cols-1 gap-x-10 mx-auto w-full\"><div class=\"col-span-full p-10 rounded-xl hover:border bg-[#393552] h-[500px] hover:border-[#ea9a97]\"><div class=\"py-2 text-2xl border-b border-[#9ccfd8]\">Chart</div></div></div><div class=\"grid grid-cols-1 gap-x-10 mx-auto w-full\"><div class=\"col-span-full p-10 rounded-xl hover:border bg-[#393552] h-[500px] hover:border-[#ea9a97]\"><div class=\"py-2 text-2xl border-b border-[#9ccfd8]\">Overview</div></div></div></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div><div class=\"grid grid-cols-1 gap-x-10 mx-auto w-full\"><div class=\"col-span-full p-10 rounded-xl hover:border bg-[#393552] hover:border-[#ea9a97]\"><div class=\"py-2 text-2xl border-b border-[#9ccfd8]\">Chart</div><div class=\"overflow-auto h-24\" id=\"chart\"></div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = graph().Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</div></div><div class=\"grid grid-cols-1 gap-x-10 mx-auto w-full\"><div class=\"overflow-y-auto col-span-full p-10 rounded-xl hover:border bg-[#393552] h-[500px] hover:border-[#ea9a97]\"><div class=\"py-2 text-2xl border-b border-[#9ccfd8]\">Overview</div><div class=\"py-5\"><table class=\"min-w-full border border-gray-200 border-collapse text-[#e0def4]\"><thead><tr class=\"bg-[#2a273f] text-[#e0def4]\"><th class=\"py-2 px-4 font-medium text-left border border-gray-200\">Name</th><th class=\"py-2 px-4 font-medium text-left border border-gray-200\">Description</th><th class=\"py-2 px-4 font-medium text-left border border-gray-200\">Amount</th></tr></thead> <tbody class=\"divide-y divide-gray-200\"><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Groceries</td><td class=\"py-2 px-4 border border-gray-200\">Weekly grocery shopping</td><td class=\"py-2 px-4 border border-gray-200\">$150.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Groceries</td><td class=\"py-2 px-4 border border-gray-200\">Weekly grocery shopping</td><td class=\"py-2 px-4 border border-gray-200\">$150.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr></tbody></table></div></div></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

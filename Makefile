@@ -1,10 +1,12 @@
-.PHONY: migrate build run
+.PHONY: migrate generate build run
 
 migrate:
-	@go run ./src/cmd/migrate
+	@Pgo run ./src/cmd/migrate
 
-build:
-	@templ generate ./...
+generate:
+	@templ generate ./... -lazy
+
+build: generate
 	@go build -o bin/budgetapp ./src/cmd/budgetapp/...
 
 run: build

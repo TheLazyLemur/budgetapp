@@ -3,16 +3,22 @@ package main
 import (
 	"log/slog"
 	"net/http"
+	"os"
 )
 
 func main() {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
 	mux := http.NewServeMux()
 
 	addRoutes(mux)
 
-	slog.Info("starting server", slog.String("address", ":8080"))
+	slog.Info("starting server", slog.String("address", port))
 
-	if err := http.ListenAndServe(":8080", mux); err != nil {
+	if err := http.ListenAndServe(":"+port, mux); err != nil {
 		slog.Error("something went wrong", slog.String("err", err.Error()))
 	}
 }
