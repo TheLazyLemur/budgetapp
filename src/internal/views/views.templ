@@ -65,11 +65,11 @@ templ gridCard(header string) {
 	</div>
 }
 
-script graph() {
+script graph(height int) {
     var options = {
     chart: {
-        type: 'area',
-        height: 500,
+        type: 'bar',
+        height: height,
         toolbar: {
             show: false,
         },
@@ -135,7 +135,7 @@ templ Index() {
 						Chart
 					</div>
 					<div class="overflow-auto h-24" id="chart"></div>
-					@graph()
+					@graph(500)
 				</div>
 			</div>
 			<div class="grid grid-cols-1 gap-x-10 mx-auto w-full">

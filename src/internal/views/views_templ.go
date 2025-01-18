@@ -95,13 +95,13 @@ func gridCard(header string) templ.Component {
 	})
 }
 
-func graph() templ.ComponentScript {
+func graph(height int) templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_graph_8fd9`,
-		Function: `function __templ_graph_8fd9(){var options = {
+		Name: `__templ_graph_399c`,
+		Function: `function __templ_graph_399c(height){var options = {
     chart: {
-        type: 'area',
-        height: 500,
+        type: 'bar',
+        height: height,
         toolbar: {
             show: false,
         },
@@ -135,8 +135,8 @@ func graph() templ.ComponentScript {
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
 }`,
-		Call:       templ.SafeScript(`__templ_graph_8fd9`),
-		CallInline: templ.SafeScriptInline(`__templ_graph_8fd9`),
+		Call:       templ.SafeScript(`__templ_graph_399c`, height),
+		CallInline: templ.SafeScriptInline(`__templ_graph_399c`, height),
 	}
 }
 
@@ -247,7 +247,7 @@ func Index() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = graph().Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = graph(500).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

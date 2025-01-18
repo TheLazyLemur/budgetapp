@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"database/sql"
-	"fmt"
 	"log/slog"
 	"net/http"
 	"os"
@@ -31,9 +30,10 @@ func main() {
 		HashedPassword: "123456",
 	})
 	if err != nil {
-		panic(err)
+		slog.Info("Default user already exists")
+	} else {
+		slog.Info("Default user created", slog.String("user", user.UserID))
 	}
-	fmt.Println(user)
 
 	mux := http.NewServeMux()
 
