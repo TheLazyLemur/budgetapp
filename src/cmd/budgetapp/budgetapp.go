@@ -1,9 +1,16 @@
 package main
 
 import (
+	"context"
+	"database/sql"
+	"fmt"
 	"log/slog"
 	"net/http"
 	"os"
+
+	_ "github.com/mattn/go-sqlite3"
+
+	"budgetapp/src/internal/db"
 )
 
 func main() {
@@ -11,6 +18,22 @@ func main() {
 	if port == "" {
 		port = "8080"
 	}
+
+	dbc, err := sql.Open("sqlite3", "budgetapp.db")
+	if err != nil {
+		panic(err)
+	}
+	defer dbc.Close()
+	qs := db.New(dbc)
+	user, err := qs.InsertUser(context.Background(), db.InsertUserParams{
+		Name:           "John Doe",
+		Email:          "john@doe.com",
+		HashedPassword: "123456",
+	})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(user)
 
 	mux := http.NewServeMux()
 
