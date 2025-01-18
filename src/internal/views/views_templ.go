@@ -29,7 +29,7 @@ func layout() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!doctype html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap\" rel=\"stylesheet\"><script src=\"https://cdn.tailwindcss.com\"></script><script src=\"https://cdn.jsdelivr.net/npm/apexcharts\"></script><style>\n            * {\n                font-family: 'JetBrains Mono', monospace;\n            }\n                .container {\n                  width: 100%;\n                  height: 100%;\n                  background-color: #313131;\n                  background-image: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0);\n                  background-size: 30px 30px;\n                  background-position: -5px -5px\n                }\n            </style></head><body class=\"container bg-[#232136] text-[#e0def4]\"><main class=\"flex flex-col w-screen lg:flex-row\"><aside class=\"flex flex-col justify-between w-full lg:w-1/6 lg:h-screen lg:text-3xl text-md bg-[#2a273f]\"><div class=\"flex my-5 mx-auto space-x-2 h-12 text-md\">Budget App</div><div class=\"flex m-auto space-x-5 h-24 lg:flex-col lg:space-y-4 lg:space-x-0 lg:h-auto\"><div class=\"my-auto hover:cursor-pointer text-[#c4a7e7]\">Dashboard </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">Expenses </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">Reporting </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">API Keys </div></div><div class=\"flex my-5 mx-auto space-x-2 h-12 text-sm\"><div class=\"my-auto\">Dan Rousseau</div><div class=\"justify-center items-center my-auto w-10 h-10 rounded-full my-autoflex bg-[#ea9a97]\"></div></div></aside><content class=\"w-full h-screen lg:w-5/6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!doctype html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap\" rel=\"stylesheet\"><script src=\"https://cdn.tailwindcss.com\"></script><script src=\"https://cdn.jsdelivr.net/npm/apexcharts\"></script><script src=\"https://unpkg.com/htmx.org@2.0.4\"></script><style>\n            * {\n                font-family: 'JetBrains Mono', monospace;\n            }\n                .container {\n                  width: 100%;\n                  height: 100%;\n                  background-color: #313131;\n                  background-image: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0);\n                  background-size: 30px 30px;\n                  background-position: -5px -5px\n                }\n            </style></head><body class=\"container bg-[#232136] text-[#e0def4]\"><main class=\"flex flex-col w-screen lg:flex-row\"><aside class=\"flex flex-col justify-between w-full lg:w-1/6 lg:h-screen lg:text-3xl text-md bg-[#2a273f]\"><div class=\"flex my-5 mx-auto space-x-2 h-12 text-md\">Budget App</div><div class=\"flex m-auto space-x-5 h-24 lg:flex-col lg:space-y-4 lg:space-x-0 lg:h-auto\"><div class=\"my-auto hover:cursor-pointer text-[#c4a7e7]\">Dashboard </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">Expenses </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">Reporting </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">API Keys </div></div><div class=\"flex my-5 mx-auto space-x-2 h-12 text-sm\"><div class=\"my-auto\">Dan Rousseau</div><div class=\"justify-center items-center my-auto w-10 h-10 rounded-full my-autoflex bg-[#ea9a97]\"></div></div></aside><content id=\"pagecontent\" class=\"w-full h-screen lg:w-5/6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -73,7 +73,7 @@ func gridCard(header string) templ.Component {
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(header)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/internal/views/views.templ`, Line: 58, Col: 11}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/internal/views/views.templ`, Line: 59, Col: 11}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -140,7 +140,7 @@ func graph(height int) templ.ComponentScript {
 	}
 }
 
-func Index() templ.Component {
+func IndexPage() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -258,6 +258,150 @@ func Index() templ.Component {
 			return nil
 		})
 		templ_7745c5c3_Err = layout().Render(templ.WithChildren(ctx, templ_7745c5c3_Var5), templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func LoginPage(errors []string) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var9 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var9 == nil {
+			templ_7745c5c3_Var9 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Var10 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+			templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+			templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+			if !templ_7745c5c3_IsBuffer {
+				defer func() {
+					templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+					if templ_7745c5c3_Err == nil {
+						templ_7745c5c3_Err = templ_7745c5c3_BufErr
+					}
+				}()
+			}
+			ctx = templ.InitializeContext(ctx)
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<div class=\"flex flex-col justify-center items-center h-screen\"><div class=\"flex flex-col justify-center items-center\"><div class=\"flex flex-col justify-center items-center\"><h1 class=\"text-3xl text-center text-[#e0def4]\">Login</h1><div class=\"flex flex-col justify-center items-center\"><form hx-boost=\"true\" action=\"/login\" method=\"POST\"><input class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\" name=\"email\" type=\"text\" placeholder=\"Email\"> <input class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\" name=\"password\" type=\"password\" placeholder=\"Password\"> <button class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\">Login</button></form>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			if len(errors) > 0 {
+				for _, err := range errors {
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<div class=\"text-center text-[#eb6f92]\">")
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					var templ_7745c5c3_Var11 string
+					templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(err)
+					if templ_7745c5c3_Err != nil {
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/internal/views/views.templ`, Line: 231, Col: 14}
+					}
+					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "</div>")
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+				}
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</div></div></div><div class=\"flex flex-col justify-center items-center\"><div class=\"flex flex-col justify-center items-center\"><a class=\"text-center text-[#e0def4]\">Forgot Password?</a> <a hx-boost=\"true\" class=\"text-center text-[#e0def4]\" href=\"/signup\">Create An Account</a></div></div></div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			return nil
+		})
+		templ_7745c5c3_Err = layout().Render(templ.WithChildren(ctx, templ_7745c5c3_Var10), templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func SignupPage(errors []string) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var12 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var12 == nil {
+			templ_7745c5c3_Var12 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Var13 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+			templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+			templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+			if !templ_7745c5c3_IsBuffer {
+				defer func() {
+					templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+					if templ_7745c5c3_Err == nil {
+						templ_7745c5c3_Err = templ_7745c5c3_BufErr
+					}
+				}()
+			}
+			ctx = templ.InitializeContext(ctx)
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<div class=\"flex flex-col justify-center items-center h-screen\"><div class=\"flex flex-col justify-center items-center\"><div class=\"flex flex-col justify-center items-center\"><h1 class=\"text-3xl text-center text-[#e0def4]\">Create An Account</h1><div class=\"flex flex-col justify-center items-center\"><form hx-boost=\"true\" action=\"/signup\" method=\"POST\"><input class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\" name=\"name\" type=\"text\" placeholder=\"Name\"> <input class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\" name=\"email\" type=\"text\" placeholder=\"Email\"> <input class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\" name=\"password\" type=\"password\" placeholder=\"Password\"> <button class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\">Signup</button></form>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			if len(errors) > 0 {
+				for _, err := range errors {
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "<div class=\"text-center text-[#eb6f92]\">")
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					var templ_7745c5c3_Var14 string
+					templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(err)
+					if templ_7745c5c3_Err != nil {
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/internal/views/views.templ`, Line: 264, Col: 14}
+					}
+					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "</div>")
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+				}
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</div></div></div><div class=\"flex flex-col justify-center items-center\"><div class=\"flex flex-col justify-center items-center\"><a hx-boost=\"true\" class=\"text-center text-[#e0def4]\" href=\"/login\">Already Have An Account?</a></div></div></div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			return nil
+		})
+		templ_7745c5c3_Err = layout().Render(templ.WithChildren(ctx, templ_7745c5c3_Var13), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

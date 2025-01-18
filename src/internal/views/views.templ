@@ -11,6 +11,7 @@ templ layout() {
 			<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet"/>
 			<script src="https://cdn.tailwindcss.com"></script>
 			<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+			<script src="https://unpkg.com/htmx.org@2.0.4"></script>
 			<style>
             * {
                 font-family: 'JetBrains Mono', monospace;
@@ -44,7 +45,7 @@ templ layout() {
 						<div class="justify-center items-center my-auto w-10 h-10 rounded-full my-autoflex bg-[#ea9a97]"></div>
 					</div>
 				</aside>
-				<content class="w-full h-screen lg:w-5/6">
+				<content id="pagecontent" class="w-full h-screen lg:w-5/6">
 					{ children... }
 				</content>
 			</main>
@@ -104,7 +105,7 @@ script graph(height int) {
     chart.render();
 }
 
-templ Index() {
+templ IndexPage() {
 	@layout() {
 		<div class="flex overflow-auto flex-col p-10 space-y-10 w-full h-full">
 			<div class="grid grid-cols-3 gap-x-10 mx-auto w-full">
@@ -206,6 +207,70 @@ templ Index() {
 							</tbody>
 						</table>
 					</div>
+				</div>
+			</div>
+		</div>
+	}
+}
+
+templ LoginPage(errors []string) {
+	@layout() {
+		<div class="flex flex-col justify-center items-center h-screen">
+			<div class="flex flex-col justify-center items-center">
+				<div class="flex flex-col justify-center items-center">
+					<h1 class="text-3xl text-center text-[#e0def4]">Login</h1>
+					<div class="flex flex-col justify-center items-center">
+						<form hx-boost="true" action="/login" method="POST">
+							<input class="py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]" name="email" type="text" placeholder="Email"/>
+							<input class="py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]" name="password" type="password" placeholder="Password"/>
+							<button class="py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]">Login</button>
+						</form>
+						if len(errors) > 0 {
+							for _, err := range errors {
+								<div class="text-center text-[#eb6f92]">
+									{ err }
+								</div>
+							}
+						}
+					</div>
+				</div>
+			</div>
+			<div class="flex flex-col justify-center items-center">
+				<div class="flex flex-col justify-center items-center">
+					<a class="text-center text-[#e0def4]">Forgot Password?</a>
+					<a hx-boost="true" class="text-center text-[#e0def4]" href="/signup">Create An Account</a>
+				</div>
+			</div>
+		</div>
+	}
+}
+
+templ SignupPage(errors []string) {
+	@layout() {
+		<div class="flex flex-col justify-center items-center h-screen">
+			<div class="flex flex-col justify-center items-center">
+				<div class="flex flex-col justify-center items-center">
+					<h1 class="text-3xl text-center text-[#e0def4]">Create An Account</h1>
+					<div class="flex flex-col justify-center items-center">
+						<form hx-boost="true" action="/signup" method="POST">
+							<input class="py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]" name="name" type="text" placeholder="Name"/>
+							<input class="py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]" name="email" type="text" placeholder="Email"/>
+							<input class="py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]" name="password" type="password" placeholder="Password"/>
+							<button class="py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]">Signup</button>
+						</form>
+						if len(errors) > 0 {
+							for _, err := range errors {
+								<div class="text-center text-[#eb6f92]">
+									{ err }
+								</div>
+							}
+						}
+					</div>
+				</div>
+			</div>
+			<div class="flex flex-col justify-center items-center">
+				<div class="flex flex-col justify-center items-center">
+					<a hx-boost="true" class="text-center text-[#e0def4]" href="/login">Already Have An Account?</a>
 				</div>
 			</div>
 		</div>

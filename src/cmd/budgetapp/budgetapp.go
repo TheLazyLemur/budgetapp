@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"database/sql"
 	"log/slog"
 	"net/http"
@@ -23,21 +22,14 @@ func main() {
 		panic(err)
 	}
 	defer dbc.Close()
-	qs := db.New(dbc)
-	user, err := qs.InsertUser(context.Background(), db.InsertUserParams{
-		Name:           "John Doe",
-		Email:          "john@doe.com",
-		HashedPassword: "123456",
-	})
-	if err != nil {
-		slog.Info("Default user already exists")
-	} else {
-		slog.Info("Default user created", slog.String("user", user.UserID))
+
+	if err := dbc.Ping(); err != nil {
+		panic(err)
 	}
 
 	mux := http.NewServeMux()
 
-	addRoutes(mux)
+	addRoutes(mux, db.New(dbc))
 
 	slog.Info("starting server", slog.String("address", port))
 
