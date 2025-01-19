@@ -9,8 +9,14 @@ import (
 )
 
 type Querier interface {
+	// Create a new session for a user
+	CreateSession(ctx context.Context, arg CreateSessionParams) error
+	// Delete a session by ID
+	DeleteSessionByID(ctx context.Context, sessionID string) error
 	// Delete a user by ID and hashed password
 	DeleteUserByID(ctx context.Context, arg DeleteUserByIDParams) error
+	// Get a session by ID
+	GetSessionByID(ctx context.Context, sessionID string) (Session, error)
 	// Get a user by email and hashed password
 	GetUserByEmailAndHashedPassword(ctx context.Context, arg GetUserByEmailAndHashedPasswordParams) (User, error)
 	// Inset a new user

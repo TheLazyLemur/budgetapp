@@ -4,6 +4,13 @@
 
 package db
 
+type Session struct {
+	SessionID   string `json:"session_id"`
+	UserID      string `json:"user_id"`
+	Expires     string `json:"expires"`
+	DateCreated string `json:"date_created"`
+}
+
 type User struct {
 	UserID         string `json:"user_id"`
 	Name           string `json:"name"`

@@ -9,6 +9,33 @@ import (
 	"context"
 )
 
+const createSession = `-- name: CreateSession :exec
+INSERT INTO sessions (session_id, user_id, expires) 
+VALUES (?, ?, datetime('now', '+1 hour'))
+`
+
+type CreateSessionParams struct {
+	SessionID string `json:"session_id"`
+	UserID    string `json:"user_id"`
+}
+
+// Create a new session for a user
+func (q *Queries) CreateSession(ctx context.Context, arg CreateSessionParams) error {
+	_, err := q.db.ExecContext(ctx, createSession, arg.SessionID, arg.UserID)
+	return err
+}
+
+const deleteSessionByID = `-- name: DeleteSessionByID :exec
+DELETE FROM sessions 
+WHERE session_id = ?
+`
+
+// Delete a session by ID
+func (q *Queries) DeleteSessionByID(ctx context.Context, sessionID string) error {
+	_, err := q.db.ExecContext(ctx, deleteSessionByID, sessionID)
+	return err
+}
+
 const deleteUserByID = `-- name: DeleteUserByID :exec
 DELETE FROM users 
 WHERE user_id = ? 
@@ -24,6 +51,25 @@ type DeleteUserByIDParams struct {
 func (q *Queries) DeleteUserByID(ctx context.Context, arg DeleteUserByIDParams) error {
 	_, err := q.db.ExecContext(ctx, deleteUserByID, arg.UserID, arg.HashedPassword)
 	return err
+}
+
+const getSessionByID = `-- name: GetSessionByID :one
+SELECT session_id, user_id, expires, date_created FROM sessions 
+WHERE session_id = ? 
+LIMIT 1
+`
+
+// Get a session by ID
+func (q *Queries) GetSessionByID(ctx context.Context, sessionID string) (Session, error) {
+	row := q.db.QueryRowContext(ctx, getSessionByID, sessionID)
+	var i Session
+	err := row.Scan(
+		&i.SessionID,
+		&i.UserID,
+		&i.Expires,
+		&i.DateCreated,
+	)
+	return i, err
 }
 
 const getUserByEmailAndHashedPassword = `-- name: GetUserByEmailAndHashedPassword :one

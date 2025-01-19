@@ -25,3 +25,19 @@ WHERE user_id = ?;
 DELETE FROM users 
 WHERE user_id = ? 
 AND hashed_password = ?;
+
+-- Create a new session for a user
+-- name: CreateSession :exec
+INSERT INTO sessions (session_id, user_id, expires) 
+VALUES (?, ?, datetime('now', '+1 hour'));
+
+-- Get a session by ID
+-- name: GetSessionByID :one
+SELECT * FROM sessions 
+WHERE session_id = ? 
+LIMIT 1;
+
+-- Delete a session by ID
+-- name: DeleteSessionByID :exec
+DELETE FROM sessions 
+WHERE session_id = ?;
