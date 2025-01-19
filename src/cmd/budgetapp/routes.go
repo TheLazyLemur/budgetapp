@@ -1,20 +1,20 @@
 package main
 
 import (
-	"net/http"
+	"github.com/go-chi/chi/v5"
 
 	"budgetapp/src/internal/db"
 	"budgetapp/src/internal/handlers"
 )
 
-func addRoutes(mux *http.ServeMux, qs db.Querier) {
+func addRoutes(mux *chi.Mux, qs db.Querier) {
 	uHandlers := handlers.NewUserHandlers(qs)
 
-	mux.HandleFunc("GET /", uHandlers.HandleIndex)
+	mux.Get("/", uHandlers.HandleIndex)
 
-	mux.HandleFunc("GET /login", uHandlers.HandleLogin)
-	mux.HandleFunc("POST /login", uHandlers.HandleLoginForm)
+	mux.Get("/login", uHandlers.HandleLogin)
+	mux.Post("/login", uHandlers.HandleLoginForm)
 
-	mux.HandleFunc("GET /signup", uHandlers.HandleSignup)
-	mux.HandleFunc("POST /signup", uHandlers.HandleSignupForm)
+	mux.Get("/signup", uHandlers.HandleSignup)
+	mux.Post("/signup", uHandlers.HandleSignupForm)
 }

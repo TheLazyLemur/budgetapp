@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/go-chi/chi/v5"
 	_ "github.com/mattn/go-sqlite3"
 
 	"budgetapp/src/internal/db"
@@ -27,13 +28,13 @@ func main() {
 		panic(err)
 	}
 
-	mux := http.NewServeMux()
+	r := chi.NewRouter()
 
-	addRoutes(mux, db.New(dbc))
+	addRoutes(r, db.New(dbc))
 
 	slog.Info("starting server", slog.String("address", port))
 
-	if err := http.ListenAndServe(":"+port, mux); err != nil {
+	if err := http.ListenAndServe(":"+port, r); err != nil {
 		slog.Error("something went wrong", slog.String("err", err.Error()))
 	}
 }
