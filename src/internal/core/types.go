@@ -15,3 +15,8 @@ type UserLoginResult struct {
 	User  db.User
 	Token string
 }
+
+type UserRegisterResult struct {
+	User  db.User
+	Token string
+}
