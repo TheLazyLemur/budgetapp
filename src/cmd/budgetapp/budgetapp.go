@@ -30,7 +30,9 @@ func main() {
 
 	r := chi.NewRouter()
 
-	addRoutes(r, db.New(dbc))
+	qs := db.NewDB(dbc)
+
+	addRoutes(r, dbc, qs)
 
 	slog.Info("starting server", slog.String("address", port))
 

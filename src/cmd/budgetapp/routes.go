@@ -1,14 +1,16 @@
 package main
 
 import (
+	"database/sql"
+
 	"github.com/go-chi/chi/v5"
 
 	"budgetapp/src/internal/db"
 	"budgetapp/src/internal/handlers"
 )
 
-func addRoutes(mux *chi.Mux, qs db.Querier) {
-	uHandlers := handlers.NewUserHandlers(qs)
+func addRoutes(mux *chi.Mux, dbc *sql.DB, qs *db.DBTx) {
+	uHandlers := handlers.NewUserHandlers(dbc, qs)
 
 	mux.Get("/", uHandlers.HandleIndex)
 

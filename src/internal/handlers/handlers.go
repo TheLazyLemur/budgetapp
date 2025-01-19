@@ -1,20 +1,22 @@
 package handlers
 
 import (
+	"database/sql"
 	"log/slog"
 	"net/http"
 
 	"github.com/google/uuid"
 
+	"budgetapp/src/internal/core"
 	"budgetapp/src/internal/db"
 	"budgetapp/src/internal/views"
 )
 
 type UserHandlers struct {
-	queries db.Querier
+	queries *db.DBTx
 }
 
-func NewUserHandlers(queries db.Querier) *UserHandlers {
+func NewUserHandlers(dbc *sql.DB, queries *db.DBTx) *UserHandlers {
 	return &UserHandlers{
 		queries: queries,
 	}
@@ -48,13 +50,7 @@ func (h *UserHandlers) HandleLoginForm(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	usr, err := h.queries.GetUserByEmailAndHashedPassword(
-		r.Context(),
-		db.GetUserByEmailAndHashedPasswordParams{
-			Email:          loginRequest.Email,
-			HashedPassword: loginRequest.Password,
-		},
-	)
+	_, err = core.LoginUser(r.Context(), h.queries, loginRequest.Email, loginRequest.Password)
 	if err != nil {
 		errors := []string{err.Error()}
 		if err := views.LoginPage(errors).Render(r.Context(), w); err != nil {
@@ -65,7 +61,6 @@ func (h *UserHandlers) HandleLoginForm(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_ = usr
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
