@@ -4,11 +4,25 @@
 
 package db
 
+import (
+	"database/sql"
+	"time"
+)
+
 type Session struct {
 	SessionID   string `json:"session_id"`
 	UserID      string `json:"user_id"`
 	Expires     string `json:"expires"`
 	DateCreated string `json:"date_created"`
+}
+
+type Transaction struct {
+	ID          string         `json:"id"`
+	UserID      string         `json:"user_id"`
+	Amount      float64        `json:"amount"`
+	Type        string         `json:"type"`
+	Description sql.NullString `json:"description"`
+	CreatedAt   time.Time      `json:"created_at"`
 }
 
 type User struct {
