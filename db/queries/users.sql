@@ -10,6 +10,12 @@ SELECT * FROM users
 WHERE email = ? 
 LIMIT 1;
 
+-- Get a user by ID
+-- name: GetUserByID :one
+SELECT * FROM users 
+WHERE user_id = ? 
+LIMIT 1;
+
 -- Update a user by ID, this will also update the updated_at field in the database
 -- name: UpdateUserByID :exec
 UPDATE users 

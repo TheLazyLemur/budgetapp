@@ -124,3 +124,21 @@ func RegisterUser(
 		Token: sessionID,
 	}, nil
 }
+
+func GetUserBySessionID(
+	ctx context.Context,
+	repo *db.DBTx,
+	sessionID string,
+) (db.User, error) {
+	session, err := repo.GetSessionByID(ctx, sessionID)
+	if err != nil {
+		return db.User{}, err
+	}
+
+	user, err := repo.GetUserByID(ctx, session.UserID)
+	if err != nil {
+		return db.User{}, err
+	}
+
+	return user, nil
+}

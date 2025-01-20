@@ -19,6 +19,8 @@ type Querier interface {
 	GetSessionByID(ctx context.Context, sessionID string) (Session, error)
 	// Get a user by email and hashed password
 	GetUserByEmail(ctx context.Context, email string) (User, error)
+	// Get a user by ID
+	GetUserByID(ctx context.Context, userID string) (User, error)
 	// Inset a new user
 	InsertUser(ctx context.Context, arg InsertUserParams) (User, error)
 	// Update a user by ID, this will also update the updated_at field in the database
