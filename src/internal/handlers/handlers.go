@@ -60,7 +60,6 @@ func (h *UserHandlers) HandleLoginForm(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// TODO: Set cookie with session ID and expiration date
-
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
@@ -96,6 +95,7 @@ func (h *UserHandlers) HandleSignupForm(w http.ResponseWriter, r *http.Request) 
 		}
 		return
 	}
+	// TODO: Set cookie with session ID and expiration date
 
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }

@@ -7,9 +7,28 @@ import (
 	"log/slog"
 
 	"github.com/google/uuid"
+	"golang.org/x/crypto/bcrypt"
 
 	"budgetapp/src/internal/db"
 )
+
+func hashPassword(password string) (string, error) {
+	hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	if err != nil {
+		return "", err
+	}
+
+	return string(hash), nil
+}
+
+func comparePassword(password, hashedPassword string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
+	if err != nil {
+		return false
+	}
+
+	return true
+}
 
 func LoginUser(
 	ctx context.Context,
@@ -28,19 +47,17 @@ func LoginUser(
 		}
 	}()
 
-	usr, err := repoWithTx.GetUserByEmailAndHashedPassword(
-		ctx,
-		db.GetUserByEmailAndHashedPasswordParams{
-			Email:          email,
-			HashedPassword: password,
-		},
-	)
+	usr, err := repoWithTx.GetUserByEmail(ctx, email)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			return UserLoginResult{}, ErrInvalidCredentials
 		}
 		slog.Error("failed to get user", slog.String("err", err.Error()))
 		return UserLoginResult{}, ErrSomethingWentWrong
+	}
+
+	if !comparePassword(password, usr.HashedPassword) {
+		return UserLoginResult{}, ErrInvalidCredentials
 	}
 
 	sessionID := uuid.Must(uuid.NewRandom()).String()
@@ -76,11 +93,16 @@ func RegisterUser(
 		}
 	}()
 
+	hashedPassword, err := hashPassword(password)
+	if err != nil {
+		return UserRegisterResult{}, err
+	}
+
 	usr, err := repoWithTx.InsertUser(ctx, db.InsertUserParams{
 		UserID:         uuid.Must(uuid.NewRandom()).String(),
 		Name:           name,
 		Email:          email,
-		HashedPassword: password,
+		HashedPassword: hashedPassword,
 	})
 	if err != nil {
 		slog.Error("failed to insert user", slog.String("err", err.Error()))

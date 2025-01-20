@@ -72,21 +72,15 @@ func (q *Queries) GetSessionByID(ctx context.Context, sessionID string) (Session
 	return i, err
 }
 
-const getUserByEmailAndHashedPassword = `-- name: GetUserByEmailAndHashedPassword :one
+const getUserByEmail = `-- name: GetUserByEmail :one
 SELECT user_id, name, email, hashed_password, date_created, date_updated FROM users 
 WHERE email = ? 
-AND hashed_password = ? 
 LIMIT 1
 `
 
-type GetUserByEmailAndHashedPasswordParams struct {
-	Email          string `json:"email"`
-	HashedPassword string `json:"hashed_password"`
-}
-
 // Get a user by email and hashed password
-func (q *Queries) GetUserByEmailAndHashedPassword(ctx context.Context, arg GetUserByEmailAndHashedPasswordParams) (User, error) {
-	row := q.db.QueryRowContext(ctx, getUserByEmailAndHashedPassword, arg.Email, arg.HashedPassword)
+func (q *Queries) GetUserByEmail(ctx context.Context, email string) (User, error) {
+	row := q.db.QueryRowContext(ctx, getUserByEmail, email)
 	var i User
 	err := row.Scan(
 		&i.UserID,

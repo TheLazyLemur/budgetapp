@@ -5,10 +5,9 @@ VALUES (?, ?, ?, ?)
 RETURNING *;
 
 -- Get a user by email and hashed password
--- name: GetUserByEmailAndHashedPassword :one
+-- name: GetUserByEmail :one
 SELECT * FROM users 
 WHERE email = ? 
-AND hashed_password = ? 
 LIMIT 1;
 
 -- Update a user by ID, this will also update the updated_at field in the database
