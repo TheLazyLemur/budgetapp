@@ -2,15 +2,21 @@ package main
 
 import (
 	"database/sql"
+	"os"
 
+	"github.com/joho/godotenv"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/pressly/goose/v3"
+	_ "github.com/tursodatabase/libsql-client-go/libsql"
 
 	"budgetapp"
 )
 
 func main() {
-	dbc, err := sql.Open("sqlite3", "file:budgetapp.db?cache=shared&mode=rwc")
+	godotenv.Load()
+
+	url := os.Getenv("DB_URL") + os.Getenv("AUTH_TOKEN")
+	dbc, err := sql.Open("libsql", url)
 	if err != nil {
 		panic(err)
 	}

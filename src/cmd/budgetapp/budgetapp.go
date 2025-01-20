@@ -7,18 +7,23 @@ import (
 	"os"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/joho/godotenv"
 	_ "github.com/mattn/go-sqlite3"
+	_ "github.com/tursodatabase/libsql-client-go/libsql"
 
 	"budgetapp/src/internal/db"
 )
 
 func main() {
+	godotenv.Load()
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
 	}
 
-	dbc, err := sql.Open("sqlite3", "budgetapp.db")
+	url := os.Getenv("DB_URL") + os.Getenv("AUTH_TOKEN")
+	dbc, err := sql.Open("libsql", url)
 	if err != nil {
 		panic(err)
 	}
