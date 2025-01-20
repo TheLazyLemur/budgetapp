@@ -23,14 +23,14 @@ func authMiddleware(queries *db.DBTx) func(next http.Handler) http.Handler {
 				return
 			}
 
-			_, err = core.GetUserBySessionID(r.Context(), queries, cookie.Value)
+			user, err := core.GetUserBySessionID(r.Context(), queries, cookie.Value)
 			if err != nil {
 				slog.Error("failed to get user", slog.String("err", err.Error()))
 				http.Redirect(w, r, "/login", http.StatusSeeOther)
 				return
 			}
 
-			ctx := context.WithValue(r.Context(), "user", cookie.Value)
+			ctx := context.WithValue(r.Context(), "user", user)
 			next.ServeHTTP(w, r.WithContext(ctx))
 		})
 	}

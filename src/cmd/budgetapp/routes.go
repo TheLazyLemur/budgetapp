@@ -16,6 +16,8 @@ func addRoutes(mux *chi.Mux, dbc *sql.DB, qs *db.DBTx) {
 	mux.Group(func(r chi.Router) {
 		r.Use(middleware.AuthMiddleware(qs))
 		r.Get("/", uHandlers.HandleIndex)
+
+		r.Get("/logout", uHandlers.HandleLogout)
 	})
 
 	mux.Get("/login", uHandlers.HandleLogin)

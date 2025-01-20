@@ -1,6 +1,8 @@
 package views
 
-templ layout() {
+import "budgetapp/src/internal/db"
+
+templ layout(user db.User) {
 	<!DOCTYPE html>
 	<html>
 		<head>
@@ -40,10 +42,11 @@ templ layout() {
 					</div>
 					<div class="flex my-5 mx-auto space-x-2 h-12 text-sm">
 						<div class="my-auto">
-							Dan Rousseau
+							{ user.Name }
 						</div>
 						<div class="justify-center items-center my-auto w-10 h-10 rounded-full my-autoflex bg-[#ea9a97]"></div>
 					</div>
+					<a href="/logout" class="mx-auto text-sm">Logout </a>
 				</aside>
 				<content id="pagecontent" class="w-full h-screen lg:w-5/6">
 					{ children... }
@@ -105,8 +108,8 @@ script graph(height int) {
     chart.render();
 }
 
-templ IndexPage() {
-	@layout() {
+templ IndexPage(user db.User) {
+	@layout(user) {
 		<div class="flex overflow-auto flex-col p-10 space-y-10 w-full h-full">
 			<div class="grid grid-cols-3 gap-x-10 mx-auto w-full">
 				<h1 class="text-3xl text-[#e0def4]">Dashboard </h1>
@@ -213,8 +216,8 @@ templ IndexPage() {
 	}
 }
 
-templ LoginPage(errors []string) {
-	@layout() {
+templ LoginPage(user db.User, errors []string) {
+	@layout(user) {
 		<div class="flex flex-col justify-center items-center h-screen">
 			<div class="flex flex-col justify-center items-center">
 				<div class="flex flex-col justify-center items-center">
@@ -245,8 +248,8 @@ templ LoginPage(errors []string) {
 	}
 }
 
-templ SignupPage(errors []string) {
-	@layout() {
+templ SignupPage(user db.User, errors []string) {
+	@layout(user) {
 		<div class="flex flex-col justify-center items-center h-screen">
 			<div class="flex flex-col justify-center items-center">
 				<div class="flex flex-col justify-center items-center">

@@ -8,7 +8,9 @@ package views
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func layout() templ.Component {
+import "budgetapp/src/internal/db"
+
+func layout(user db.User) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -29,7 +31,20 @@ func layout() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!doctype html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap\" rel=\"stylesheet\"><script src=\"https://cdn.tailwindcss.com\"></script><script src=\"https://cdn.jsdelivr.net/npm/apexcharts\"></script><script src=\"https://unpkg.com/htmx.org@2.0.4\"></script><style>\n            * {\n                font-family: 'JetBrains Mono', monospace;\n            }\n                .container {\n                  width: 100%;\n                  height: 100%;\n                  background-color: #313131;\n                  background-image: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0);\n                  background-size: 30px 30px;\n                  background-position: -5px -5px\n                }\n            </style></head><body class=\"container bg-[#232136] text-[#e0def4]\"><main class=\"flex flex-col w-screen lg:flex-row\"><aside class=\"flex flex-col justify-between w-full lg:w-1/6 lg:h-screen lg:text-3xl text-md bg-[#2a273f]\"><div class=\"flex my-5 mx-auto space-x-2 h-12 text-md\">Budget App</div><div class=\"flex m-auto space-x-5 h-24 lg:flex-col lg:space-y-4 lg:space-x-0 lg:h-auto\"><div class=\"my-auto hover:cursor-pointer text-[#c4a7e7]\">Dashboard </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">Expenses </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">Reporting </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">API Keys </div></div><div class=\"flex my-5 mx-auto space-x-2 h-12 text-sm\"><div class=\"my-auto\">Dan Rousseau</div><div class=\"justify-center items-center my-auto w-10 h-10 rounded-full my-autoflex bg-[#ea9a97]\"></div></div></aside><content id=\"pagecontent\" class=\"w-full h-screen lg:w-5/6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!doctype html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap\" rel=\"stylesheet\"><script src=\"https://cdn.tailwindcss.com\"></script><script src=\"https://cdn.jsdelivr.net/npm/apexcharts\"></script><script src=\"https://unpkg.com/htmx.org@2.0.4\"></script><style>\n            * {\n                font-family: 'JetBrains Mono', monospace;\n            }\n                .container {\n                  width: 100%;\n                  height: 100%;\n                  background-color: #313131;\n                  background-image: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0);\n                  background-size: 30px 30px;\n                  background-position: -5px -5px\n                }\n            </style></head><body class=\"container bg-[#232136] text-[#e0def4]\"><main class=\"flex flex-col w-screen lg:flex-row\"><aside class=\"flex flex-col justify-between w-full lg:w-1/6 lg:h-screen lg:text-3xl text-md bg-[#2a273f]\"><div class=\"flex my-5 mx-auto space-x-2 h-12 text-md\">Budget App</div><div class=\"flex m-auto space-x-5 h-24 lg:flex-col lg:space-y-4 lg:space-x-0 lg:h-auto\"><div class=\"my-auto hover:cursor-pointer text-[#c4a7e7]\">Dashboard </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">Expenses </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">Reporting </div><div class=\"my-auto hover:cursor-pointer text-[#908caa] hover:text-[#ea9a97]\">API Keys </div></div><div class=\"flex my-5 mx-auto space-x-2 h-12 text-sm\"><div class=\"my-auto\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var2 string
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(user.Name)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/internal/views/views.templ`, Line: 45, Col: 18}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div><div class=\"justify-center items-center my-auto w-10 h-10 rounded-full my-autoflex bg-[#ea9a97]\"></div></div><a href=\"/logout\" class=\"mx-auto text-sm\">Logout </a></aside><content id=\"pagecontent\" class=\"w-full h-screen lg:w-5/6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -37,7 +52,7 @@ func layout() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</content></main></body></html>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</content></main></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -61,33 +76,33 @@ func gridCard(header string) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var2 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var2 == nil {
-			templ_7745c5c3_Var2 = templ.NopComponent
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"p-10 rounded-xl hover:border cols-span-1 bg-[#393552] h-[300px] hover:border-[#ea9a97]\"><div class=\"py-2 text-2xl border-b border-[#9ccfd8]\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div class=\"p-10 rounded-xl hover:border cols-span-1 bg-[#393552] h-[300px] hover:border-[#ea9a97]\"><div class=\"py-2 text-2xl border-b border-[#9ccfd8]\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var3 string
-		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(header)
+		var templ_7745c5c3_Var4 string
+		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(header)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/internal/views/views.templ`, Line: 59, Col: 11}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/internal/views/views.templ`, Line: 62, Col: 11}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div><div class=\"flex w-full h-full\"><div class=\"m-auto text-4xl\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templ_7745c5c3_Var2.Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</div><div class=\"flex w-full h-full\"><div class=\"m-auto text-4xl\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</div></div></div>")
+		templ_7745c5c3_Err = templ_7745c5c3_Var3.Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -140,7 +155,7 @@ func graph(height int) templ.ComponentScript {
 	}
 }
 
-func IndexPage() templ.Component {
+func IndexPage(user db.User) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -156,12 +171,12 @@ func IndexPage() templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var4 == nil {
-			templ_7745c5c3_Var4 = templ.NopComponent
+		templ_7745c5c3_Var5 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var5 == nil {
+			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Var5 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Var6 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 			templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 			templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
 			if !templ_7745c5c3_IsBuffer {
@@ -173,29 +188,7 @@ func IndexPage() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<div class=\"flex overflow-auto flex-col p-10 space-y-10 w-full h-full\"><div class=\"grid grid-cols-3 gap-x-10 mx-auto w-full\"><h1 class=\"text-3xl text-[#e0def4]\">Dashboard </h1><div></div><h1 class=\"text-3xl text-right text-[#e0def4]\">30 Days </h1></div><div class=\"grid grid-cols-1 gap-10 mx-auto w-full lg:grid-cols-3\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Var6 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
-				templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
-				templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
-				if !templ_7745c5c3_IsBuffer {
-					defer func() {
-						templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
-						if templ_7745c5c3_Err == nil {
-							templ_7745c5c3_Err = templ_7745c5c3_BufErr
-						}
-					}()
-				}
-				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div class=\"text-[#e0def4]\">$420.69\t</div>")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				return nil
-			})
-			templ_7745c5c3_Err = gridCard("Balance").Render(templ.WithChildren(ctx, templ_7745c5c3_Var6), templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div class=\"flex overflow-auto flex-col p-10 space-y-10 w-full h-full\"><div class=\"grid grid-cols-3 gap-x-10 mx-auto w-full\"><h1 class=\"text-3xl text-[#e0def4]\">Dashboard </h1><div></div><h1 class=\"text-3xl text-right text-[#e0def4]\">30 Days </h1></div><div class=\"grid grid-cols-1 gap-10 mx-auto w-full lg:grid-cols-3\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -211,13 +204,13 @@ func IndexPage() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<div class=\"text-[#3e8fb0]\">$1000.00</div>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<div class=\"text-[#e0def4]\">$420.69\t</div>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				return nil
 			})
-			templ_7745c5c3_Err = gridCard("Income").Render(templ.WithChildren(ctx, templ_7745c5c3_Var7), templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = gridCard("Balance").Render(templ.WithChildren(ctx, templ_7745c5c3_Var7), templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -233,17 +226,39 @@ func IndexPage() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<div class=\"text-[#eb6f92]\">$579.31</div>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<div class=\"text-[#3e8fb0]\">$1000.00</div>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				return nil
 			})
-			templ_7745c5c3_Err = gridCard("Expenses").Render(templ.WithChildren(ctx, templ_7745c5c3_Var8), templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = gridCard("Income").Render(templ.WithChildren(ctx, templ_7745c5c3_Var8), templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div><div class=\"grid grid-cols-1 gap-x-10 mx-auto w-full\"><div class=\"col-span-full p-10 rounded-xl hover:border bg-[#393552] hover:border-[#ea9a97]\"><div class=\"py-2 text-2xl border-b border-[#9ccfd8]\">Chart</div><div class=\"overflow-auto h-24\" id=\"chart\"></div>")
+			templ_7745c5c3_Var9 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+				templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+				templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+				if !templ_7745c5c3_IsBuffer {
+					defer func() {
+						templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+						if templ_7745c5c3_Err == nil {
+							templ_7745c5c3_Err = templ_7745c5c3_BufErr
+						}
+					}()
+				}
+				ctx = templ.InitializeContext(ctx)
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<div class=\"text-[#eb6f92]\">$579.31</div>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				return nil
+			})
+			templ_7745c5c3_Err = gridCard("Expenses").Render(templ.WithChildren(ctx, templ_7745c5c3_Var9), templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</div><div class=\"grid grid-cols-1 gap-x-10 mx-auto w-full\"><div class=\"col-span-full p-10 rounded-xl hover:border bg-[#393552] hover:border-[#ea9a97]\"><div class=\"py-2 text-2xl border-b border-[#9ccfd8]\">Chart</div><div class=\"overflow-auto h-24\" id=\"chart\"></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -251,13 +266,13 @@ func IndexPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</div></div><div class=\"grid grid-cols-1 gap-x-10 mx-auto w-full\"><div class=\"overflow-y-auto col-span-full p-10 rounded-xl hover:border bg-[#393552] h-[500px] hover:border-[#ea9a97]\"><div class=\"py-2 text-2xl border-b border-[#9ccfd8]\">Overview</div><div class=\"py-5\"><table class=\"min-w-full border border-gray-200 border-collapse text-[#e0def4]\"><thead><tr class=\"bg-[#2a273f] text-[#e0def4]\"><th class=\"py-2 px-4 font-medium text-left border border-gray-200\">Name</th><th class=\"py-2 px-4 font-medium text-left border border-gray-200\">Description</th><th class=\"py-2 px-4 font-medium text-left border border-gray-200\">Amount</th></tr></thead> <tbody class=\"divide-y divide-gray-200\"><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Groceries</td><td class=\"py-2 px-4 border border-gray-200\">Weekly grocery shopping</td><td class=\"py-2 px-4 border border-gray-200\">$150.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Groceries</td><td class=\"py-2 px-4 border border-gray-200\">Weekly grocery shopping</td><td class=\"py-2 px-4 border border-gray-200\">$150.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr></tbody></table></div></div></div></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</div></div><div class=\"grid grid-cols-1 gap-x-10 mx-auto w-full\"><div class=\"overflow-y-auto col-span-full p-10 rounded-xl hover:border bg-[#393552] h-[500px] hover:border-[#ea9a97]\"><div class=\"py-2 text-2xl border-b border-[#9ccfd8]\">Overview</div><div class=\"py-5\"><table class=\"min-w-full border border-gray-200 border-collapse text-[#e0def4]\"><thead><tr class=\"bg-[#2a273f] text-[#e0def4]\"><th class=\"py-2 px-4 font-medium text-left border border-gray-200\">Name</th><th class=\"py-2 px-4 font-medium text-left border border-gray-200\">Description</th><th class=\"py-2 px-4 font-medium text-left border border-gray-200\">Amount</th></tr></thead> <tbody class=\"divide-y divide-gray-200\"><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Groceries</td><td class=\"py-2 px-4 border border-gray-200\">Weekly grocery shopping</td><td class=\"py-2 px-4 border border-gray-200\">$150.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Groceries</td><td class=\"py-2 px-4 border border-gray-200\">Weekly grocery shopping</td><td class=\"py-2 px-4 border border-gray-200\">$150.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr><tr class=\"hover:bg-gray-50\"><td class=\"py-2 px-4 border border-gray-200\">Salary</td><td class=\"py-2 px-4 border border-gray-200\">Monthly paycheck</td><td class=\"py-2 px-4 border border-gray-200\">$2,500.00</td></tr></tbody></table></div></div></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return nil
 		})
-		templ_7745c5c3_Err = layout().Render(templ.WithChildren(ctx, templ_7745c5c3_Var5), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = layout(user).Render(templ.WithChildren(ctx, templ_7745c5c3_Var6), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -265,7 +280,7 @@ func IndexPage() templ.Component {
 	})
 }
 
-func LoginPage(errors []string) templ.Component {
+func LoginPage(user db.User, errors []string) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -281,12 +296,12 @@ func LoginPage(errors []string) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var9 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var9 == nil {
-			templ_7745c5c3_Var9 = templ.NopComponent
+		templ_7745c5c3_Var10 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var10 == nil {
+			templ_7745c5c3_Var10 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Var10 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Var11 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 			templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 			templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
 			if !templ_7745c5c3_IsBuffer {
@@ -298,38 +313,38 @@ func LoginPage(errors []string) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<div class=\"flex flex-col justify-center items-center h-screen\"><div class=\"flex flex-col justify-center items-center\"><div class=\"flex flex-col justify-center items-center\"><h1 class=\"text-3xl text-center text-[#e0def4]\">Login</h1><div class=\"flex flex-col justify-center items-center\"><form hx-boost=\"true\" action=\"/login\" method=\"POST\"><input class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\" name=\"email\" type=\"text\" placeholder=\"Email\"> <input class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\" name=\"password\" type=\"password\" placeholder=\"Password\"> <button class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\">Login</button></form>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<div class=\"flex flex-col justify-center items-center h-screen\"><div class=\"flex flex-col justify-center items-center\"><div class=\"flex flex-col justify-center items-center\"><h1 class=\"text-3xl text-center text-[#e0def4]\">Login</h1><div class=\"flex flex-col justify-center items-center\"><form hx-boost=\"true\" action=\"/login\" method=\"POST\"><input class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\" name=\"email\" type=\"text\" placeholder=\"Email\"> <input class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\" name=\"password\" type=\"password\" placeholder=\"Password\"> <button class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\">Login</button></form>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			if len(errors) > 0 {
 				for _, err := range errors {
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<div class=\"text-center text-[#eb6f92]\">")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "<div class=\"text-center text-[#eb6f92]\">")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					var templ_7745c5c3_Var11 string
-					templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(err)
+					var templ_7745c5c3_Var12 string
+					templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(err)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/internal/views/views.templ`, Line: 231, Col: 14}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/internal/views/views.templ`, Line: 234, Col: 14}
 					}
-					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
+					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "</div>")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</div>")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</div></div></div><div class=\"flex flex-col justify-center items-center\"><div class=\"flex flex-col justify-center items-center\"><a class=\"text-center text-[#e0def4]\">Forgot Password?</a> <a hx-boost=\"true\" class=\"text-center text-[#e0def4]\" href=\"/signup\">Create An Account</a></div></div></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</div></div></div><div class=\"flex flex-col justify-center items-center\"><div class=\"flex flex-col justify-center items-center\"><a class=\"text-center text-[#e0def4]\">Forgot Password?</a> <a hx-boost=\"true\" class=\"text-center text-[#e0def4]\" href=\"/signup\">Create An Account</a></div></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return nil
 		})
-		templ_7745c5c3_Err = layout().Render(templ.WithChildren(ctx, templ_7745c5c3_Var10), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = layout(user).Render(templ.WithChildren(ctx, templ_7745c5c3_Var11), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -337,7 +352,7 @@ func LoginPage(errors []string) templ.Component {
 	})
 }
 
-func SignupPage(errors []string) templ.Component {
+func SignupPage(user db.User, errors []string) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -353,12 +368,12 @@ func SignupPage(errors []string) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var12 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var12 == nil {
-			templ_7745c5c3_Var12 = templ.NopComponent
+		templ_7745c5c3_Var13 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var13 == nil {
+			templ_7745c5c3_Var13 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Var13 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Var14 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 			templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 			templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
 			if !templ_7745c5c3_IsBuffer {
@@ -370,38 +385,38 @@ func SignupPage(errors []string) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<div class=\"flex flex-col justify-center items-center h-screen\"><div class=\"flex flex-col justify-center items-center\"><div class=\"flex flex-col justify-center items-center\"><h1 class=\"text-3xl text-center text-[#e0def4]\">Create An Account</h1><div class=\"flex flex-col justify-center items-center\"><form hx-boost=\"true\" action=\"/signup\" method=\"POST\"><input class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\" name=\"name\" type=\"text\" placeholder=\"Name\"> <input class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\" name=\"email\" type=\"text\" placeholder=\"Email\"> <input class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\" name=\"password\" type=\"password\" placeholder=\"Password\"> <button class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\">Signup</button></form>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "<div class=\"flex flex-col justify-center items-center h-screen\"><div class=\"flex flex-col justify-center items-center\"><div class=\"flex flex-col justify-center items-center\"><h1 class=\"text-3xl text-center text-[#e0def4]\">Create An Account</h1><div class=\"flex flex-col justify-center items-center\"><form hx-boost=\"true\" action=\"/signup\" method=\"POST\"><input class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\" name=\"name\" type=\"text\" placeholder=\"Name\"> <input class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\" name=\"email\" type=\"text\" placeholder=\"Email\"> <input class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\" name=\"password\" type=\"password\" placeholder=\"Password\"> <button class=\"py-2 px-4 w-full text-center rounded-lg border border-[#9ccfd8] text-[#e0def4]\">Signup</button></form>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			if len(errors) > 0 {
 				for _, err := range errors {
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "<div class=\"text-center text-[#eb6f92]\">")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<div class=\"text-center text-[#eb6f92]\">")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					var templ_7745c5c3_Var14 string
-					templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(err)
+					var templ_7745c5c3_Var15 string
+					templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(err)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/internal/views/views.templ`, Line: 264, Col: 14}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/internal/views/views.templ`, Line: 267, Col: 14}
 					}
-					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
+					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "</div>")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</div>")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</div></div></div><div class=\"flex flex-col justify-center items-center\"><div class=\"flex flex-col justify-center items-center\"><a hx-boost=\"true\" class=\"text-center text-[#e0def4]\" href=\"/login\">Already Have An Account?</a></div></div></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "</div></div></div><div class=\"flex flex-col justify-center items-center\"><div class=\"flex flex-col justify-center items-center\"><a hx-boost=\"true\" class=\"text-center text-[#e0def4]\" href=\"/login\">Already Have An Account?</a></div></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return nil
 		})
-		templ_7745c5c3_Err = layout().Render(templ.WithChildren(ctx, templ_7745c5c3_Var13), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = layout(user).Render(templ.WithChildren(ctx, templ_7745c5c3_Var14), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
