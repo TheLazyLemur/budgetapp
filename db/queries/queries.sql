@@ -46,3 +46,8 @@ LIMIT 1;
 -- name: DeleteSessionByID :exec
 DELETE FROM sessions 
 WHERE session_id = ?;
+
+-- Create a new transaction for a user
+-- name: CreateTransaction :exec
+INSERT INTO transactions (id, user_id, amount, type, description, created_at)
+VALUES (?, ?, ?, ?, ?, datetime('now'));

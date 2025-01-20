@@ -7,6 +7,7 @@ package db
 
 import (
 	"context"
+	"database/sql"
 )
 
 const createSession = `-- name: CreateSession :exec
@@ -22,6 +23,31 @@ type CreateSessionParams struct {
 // Create a new session for a user
 func (q *Queries) CreateSession(ctx context.Context, arg CreateSessionParams) error {
 	_, err := q.db.ExecContext(ctx, createSession, arg.SessionID, arg.UserID)
+	return err
+}
+
+const createTransaction = `-- name: CreateTransaction :exec
+INSERT INTO transactions (id, user_id, amount, type, description, created_at)
+VALUES (?, ?, ?, ?, ?, datetime('now'))
+`
+
+type CreateTransactionParams struct {
+	ID          string         `json:"id"`
+	UserID      string         `json:"user_id"`
+	Amount      float64        `json:"amount"`
+	Type        string         `json:"type"`
+	Description sql.NullString `json:"description"`
+}
+
+// Create a new transaction for a user
+func (q *Queries) CreateTransaction(ctx context.Context, arg CreateTransactionParams) error {
+	_, err := q.db.ExecContext(ctx, createTransaction,
+		arg.ID,
+		arg.UserID,
+		arg.Amount,
+		arg.Type,
+		arg.Description,
+	)
 	return err
 }
 

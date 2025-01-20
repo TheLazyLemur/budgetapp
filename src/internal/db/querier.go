@@ -11,6 +11,8 @@ import (
 type Querier interface {
 	// Create a new session for a user
 	CreateSession(ctx context.Context, arg CreateSessionParams) error
+	// Create a new transaction for a user
+	CreateTransaction(ctx context.Context, arg CreateTransactionParams) error
 	// Delete a session by ID
 	DeleteSessionByID(ctx context.Context, sessionID string) error
 	// Delete a user by ID and hashed password
