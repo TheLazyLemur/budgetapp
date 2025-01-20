@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS transactions (
     type TEXT CHECK(type IN ('income', 'expense')) NOT NULL,
     description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
 CREATE INDEX IF NOT EXISTS idx_transactions_user_type ON transactions(user_id, type);
