@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"log/slog"
 	"net/http"
+	"time"
 
 	"budgetapp/src/internal/core"
 	"budgetapp/src/internal/db"
@@ -48,7 +49,12 @@ func (h *UserHandlers) HandleLoginForm(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err = core.LoginUser(r.Context(), h.queries, loginRequest.Email, loginRequest.Password)
+	loginResult, err := core.LoginUser(
+		r.Context(),
+		h.queries,
+		loginRequest.Email,
+		loginRequest.Password,
+	)
 	if err != nil {
 		errors := []string{err.Error()}
 		if err := views.LoginPage(errors).Render(r.Context(), w); err != nil {
@@ -59,7 +65,14 @@ func (h *UserHandlers) HandleLoginForm(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// TODO: Set cookie with session ID and expiration date
+	http.SetCookie(w, &http.Cookie{
+		Name:     "session",
+		Value:    loginResult.Token,
+		Expires:  time.Now().Add(time.Hour * 24 * 7),
+		HttpOnly: true,
+		Secure:   true,
+	})
+
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
@@ -81,7 +94,7 @@ func (h *UserHandlers) HandleSignupForm(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	_, err = core.RegisterUser(
+	registerResult, err := core.RegisterUser(
 		r.Context(),
 		h.queries,
 		signupRequest.Name,
@@ -95,7 +108,14 @@ func (h *UserHandlers) HandleSignupForm(w http.ResponseWriter, r *http.Request) 
 		}
 		return
 	}
-	// TODO: Set cookie with session ID and expiration date
+
+	http.SetCookie(w, &http.Cookie{
+		Name:     "session",
+		Value:    registerResult.Token,
+		Expires:  time.Now().Add(time.Hour * 24 * 7),
+		HttpOnly: true,
+		Secure:   true,
+	})
 
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
