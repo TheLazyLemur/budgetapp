@@ -8,3 +8,4 @@
 - AlpineJS
 - HTMX
 - TailwindCSS
+- Kafka
